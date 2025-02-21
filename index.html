@@ -1,105 +1,83 @@
-{\rtf1\ansi\ansicpg1252\cocoartf2759
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
-
-\f0\fs24 \cf0 <!DOCTYPE html>\
-<html lang="en">\
-<head>\
-    <meta charset="UTF-8">\
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
-    <title>Workout Tracker</title>\
-    <style>\
-        body \{ font-family: Arial, sans-serif; text-align: center; margin: 20px; \}\
-        .container \{ max-width: 400px; margin: auto; \}\
-        h2 \{ color: #333; \}\
-        .tabs \{ display: flex; justify-content: center; margin-bottom: 20px; \}\
-        .tab \{ padding: 10px 20px; cursor: pointer; border: 1px solid #ccc; background: #f0f0f0; \}\
-        .tab.active \{ background: #007BFF; color: white; \}\
-        .workout \{ display: none; \}\
-        .exercise-list \{ list-style: none; padding: 0; \}\
-        .exercise-list li \{ display: flex; align-items: center; justify-content: space-between; padding: 10px; border-bottom: 1px solid #ccc; \}\
-        input[type="checkbox"] \{ transform: scale(1.5); margin-right: 10px; \}\
-        .reset-btn \{ margin-top: 20px; padding: 10px; font-size: 16px; cursor: pointer; \}\
-    </style>\
-</head>\
-<body>\
-\
-    <div class="container">\
-        <h2>Workout Tracker</h2>\
-        \
-        <div class="tabs">\
-            <div class="tab active" onclick="switchWeek(1)">Week 1</div>\
-            <div class="tab" onclick="switchWeek(2)">Week 2</div>\
-            <div class="tab" onclick="switchWeek(3)">Week 3</div>\
-            <div class="tab" onclick="switchWeek(4)">Week 4</div>\
-        </div>\
-\
-        <!-- Week 1 -->\
-        <div class="workout" id="week1">\
-            <h3>Week 1 Workout</h3>\
-            <ul class="exercise-list">\
-                <li><input type="checkbox"> Barbell Squats <a href="#" target="_blank">\uc0\u55357 \u56526 </a></li>\
-                <li><input type="checkbox"> Leg Press <a href="#" target="_blank">\uc0\u55357 \u56526 </a></li>\
-                <li><input type="checkbox"> Deadlift with Dumbbells <a href="#" target="_blank">\uc0\u55357 \u56526 </a></li>\
-            </ul>\
-            <button class="reset-btn" onclick="resetChecklist('week1')">Reset Week 1</button>\
-        </div>\
-\
-        <!-- Week 2 -->\
-        <div class="workout" id="week2">\
-            <h3>Week 2 Workout</h3>\
-            <ul class="exercise-list">\
-                <li><input type="checkbox"> Bench Press <a href="#" target="_blank">\uc0\u55357 \u56526 </a></li>\
-                <li><input type="checkbox"> Dips <a href="#" target="_blank">\uc0\u55357 \u56526 </a></li>\
-                <li><input type="checkbox"> Incline Dumbbell Press <a href="#" target="_blank">\uc0\u55357 \u56526 </a></li>\
-            </ul>\
-            <button class="reset-btn" onclick="resetChecklist('week2')">Reset Week 2</button>\
-        </div>\
-\
-        <!-- Week 3 -->\
-        <div class="workout" id="week3">\
-            <h3>Week 3 Workout</h3>\
-            <ul class="exercise-list">\
-                <li><input type="checkbox"> Pull-Ups <a href="#" target="_blank">\uc0\u55357 \u56526 </a></li>\
-                <li><input type="checkbox"> Lat Pulldown <a href="#" target="_blank">\uc0\u55357 \u56526 </a></li>\
-                <li><input type="checkbox"> Barbell Rows <a href="#" target="_blank">\uc0\u55357 \u56526 </a></li>\
-            </ul>\
-            <button class="reset-btn" onclick="resetChecklist('week3')">Reset Week 3</button>\
-        </div>\
-\
-        <!-- Week 4 -->\
-        <div class="workout" id="week4">\
-            <h3>Week 4 Workout</h3>\
-            <ul class="exercise-list">\
-                <li><input type="checkbox"> Shoulder Press <a href="#" target="_blank">\uc0\u55357 \u56526 </a></li>\
-                <li><input type="checkbox"> Lateral Raises <a href="#" target="_blank">\uc0\u55357 \u56526 </a></li>\
-                <li><input type="checkbox"> Rear Delt Flys <a href="#" target="_blank">\uc0\u55357 \u56526 </a></li>\
-            </ul>\
-            <button class="reset-btn" onclick="resetChecklist('week4')">Reset Week 4</button>\
-        </div>\
-\
-    </div>\
-\
-    <script>\
-        function switchWeek(week) \{\
-            document.querySelectorAll(".workout").forEach(w => w.style.display = "none");\
-            document.getElementById("week" + week).style.display = "block";\
-\
-            document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));\
-            document.querySelectorAll(".tab")[week - 1].classList.add("active");\
-        \}\
-\
-        function resetChecklist(weekId) \{\
-            document.querySelectorAll("#" + weekId + " input[type=checkbox]").forEach(cb => cb.checked = false);\
-        \}\
-\
-        // Show Week 1 by default\
-        switchWeek(1);\
-    </script>\
-\
-</body>\
-</html>\
-}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Workout Tracker</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .week-container { margin-bottom: 20px; }
+        .exercise { display: flex; align-items: center; margin-bottom: 5px; }
+        .exercise input { margin-right: 10px; }
+        .hidden { display: none; }
+    </style>
+    <script>
+        function toggleWeek(weekId) {
+            var week = document.getElementById(weekId);
+            week.classList.toggle("hidden");
+        }
+    </script>
+</head>
+<body>
+    <h1>Workout Tracker</h1>
+    <p>Select a week and track your workouts by ticking the boxes.</p>
+    
+    <div>
+        <label for="weekSelect">Choose a Week:</label>
+        <select id="weekSelect" onchange="toggleWeek(this.value)">
+            <option value="">-- Select Week --</option>
+            <option value="week1">Week 1</option>
+            <option value="week2">Week 2</option>
+            <option value="week3">Week 3</option>
+            <option value="week4">Week 4</option>
+        </select>
+    </div>
+    
+    <div id="week1" class="week-container hidden">
+        <h2>Week 1</h2>
+        <h3>Day 1: Upper Body (Push) + Cardio</h3>
+        <div class="exercise"><input type="checkbox">Barbell Bench Press – 4x8-10</div>
+        <div class="exercise"><input type="checkbox">Dumbbell Shoulder Press – 3x10</div>
+        <div class="exercise"><input type="checkbox">Incline Dumbbell Press – 3x10</div>
+        <div class="exercise"><input type="checkbox">Dips (Weighted if possible) – 3x8-12</div>
+        <div class="exercise"><input type="checkbox">Lateral Raises – 3x12-15</div>
+        <div class="exercise"><input type="checkbox">Triceps Rope Pushdown – 3x12-15</div>
+        <div class="exercise"><input type="checkbox">Cardio: 10-15 min incline treadmill walk</div>
+    </div>
+    
+    <div id="week2" class="week-container hidden">
+        <h2>Week 2</h2>
+        <h3>Day 1: Upper Body (Push) + Cardio</h3>
+        <div class="exercise"><input type="checkbox">Dumbbell Bench Press – 4x8-10</div>
+        <div class="exercise"><input type="checkbox">Machine Shoulder Press – 3x10</div>
+        <div class="exercise"><input type="checkbox">Incline Barbell Press – 3x10</div>
+        <div class="exercise"><input type="checkbox">Close-Grip Push-Ups – 3x12</div>
+        <div class="exercise"><input type="checkbox">Cable Lateral Raises – 3x12-15</div>
+        <div class="exercise"><input type="checkbox">Overhead Dumbbell Triceps Extension – 3x12-15</div>
+        <div class="exercise"><input type="checkbox">Cardio: 10-15 min HIIT sprints</div>
+    </div>
+    
+    <div id="week3" class="week-container hidden">
+        <h2>Week 3</h2>
+        <h3>Day 1: Upper Body (Push) + Cardio</h3>
+        <div class="exercise"><input type="checkbox">Machine Chest Press – 4x8-10</div>
+        <div class="exercise"><input type="checkbox">Arnold Shoulder Press – 3x10</div>
+        <div class="exercise"><input type="checkbox">Decline Dumbbell Press – 3x10</div>
+        <div class="exercise"><input type="checkbox">Weighted Dips – 3x8-12</div>
+        <div class="exercise"><input type="checkbox">Face Pulls – 3x12-15</div>
+        <div class="exercise"><input type="checkbox">Skull Crushers – 3x12-15</div>
+        <div class="exercise"><input type="checkbox">Cardio: 10-15 min rowing machine</div>
+    </div>
+    
+    <div id="week4" class="week-container hidden">
+        <h2>Week 4</h2>
+        <h3>Day 1: Upper Body (Push) + Cardio</h3>
+        <div class="exercise"><input type="checkbox">Incline Barbell Bench Press – 4x10-12</div>
+        <div class="exercise"><input type="checkbox">Seated Dumbbell Shoulder Press – 3x10</div>
+        <div class="exercise"><input type="checkbox">Dumbbell Chest Flys – 3x12</div>
+        <div class="exercise"><input type="checkbox">Diamond Push-Ups – 3x12</div>
+        <div class="exercise"><input type="checkbox">Cable Lateral Raises – 3x12-15</div>
+        <div class="exercise"><input type="checkbox">Dumbbell Kickbacks – 3x12-15</div>
+        <div class="exercise"><input type="checkbox">Cardio: 10-15 min rower</div>
+    </div>
+    
+</body>
+</html>
